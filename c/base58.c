@@ -33,7 +33,9 @@ size_t base58Encode(const unsigned char *bytes, size_t nBytes, char **b58)
 		}
 	}
 	size_t i, j, leadingZeroes = 0;
-	//set i to skip leading zeroes.
+	// Set i such that leading zeroes are skipped. These don't signify
+	// anything - they are just a result of sizing the initial array
+	// and calloc'ing it full of zeroes.
 	for (i = 0; i <= b58Size; i++) {
 		if (digits[i] != 0) {
 			break;
@@ -41,10 +43,15 @@ size_t base58Encode(const unsigned char *bytes, size_t nBytes, char **b58)
 			leadingZeroes++;
 		}
 	}
-	for (j = 0; i <= b58Size; i++, j++) {
+//	for (j = 0; i <= b58Size; i++, j++) {
+	for (j = zeroes; i <= b58Size; i++, j++) {
 		*(*b58 + j) = b58Chars[(int)digits[i]];
 	}
 	*(*b58 + j + 1) = 0;
+	// Leading zeroes, as counted on line 17:
+	for (size_t k = 0; k < zeroes; k++) {
+		*(*b58 + k) = '1';
+	}
 	
 	free(digits);
 	return b58Size;
