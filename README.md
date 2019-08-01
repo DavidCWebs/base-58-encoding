@@ -95,3 +95,11 @@ d1bn−1 + d2bn−2 + … + dnb0, where 0 ≤ di < b
 ```
 
 TO BE COMPLETED.
+
+References
+----------
+* [Bitcoin Base58Check Encoding][1]
+* [Technical background, version 1 Bitcoin Addresses][2]
+
+[1]: https://en.bitcoin.it/Base58Check_encoding
+[2]: https://en.bitcoin.it/wiki/Technical_background_of_version_1_Bitcoin_addresses
